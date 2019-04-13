@@ -1,0 +1,4 @@
+{
+  "status": { "type": "integer" },
+  "price": { "type": "float" }
+}

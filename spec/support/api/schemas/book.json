@@ -1,0 +1,8 @@
+{
+  "name": { "type": "string"},
+  "first_name": {"type": "string"},
+  "last_name": {"type": "string"},
+  "author": {"type": "date"},
+  "price": {"type": "date"},
+  "is_recommended": {"type": "boolean"}
+}

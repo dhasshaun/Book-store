@@ -1,0 +1,9 @@
+{
+  "email": { "type": "string"},
+  "encrypted_password": {"type": "string"},
+  "reset_password_token": {"type": "string"},
+  "reset_password_sent_at": {"type": "date"},
+  "remember_created_at": {"type": "date"},
+  "created_at": {"type": "date"},
+  "updated_at": {"type": "date"}
+}

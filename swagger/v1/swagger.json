@@ -1,0 +1,214 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API V1",
+    "version": "v1"
+  },
+  "paths": {
+    "/books": {
+      "get": {
+        "summary": "Fetch Books (Login not required)",
+        "tags": [
+          "Books"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "All books in Database order by recommended books"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "summary": "Login",
+        "tags": [
+          "Authentication"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user": {
+                  "type": "object",
+                  "properties": {
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "required": [
+              "email",
+              "password"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Logged in"
+          },
+          "401": {
+            "description": "Unable to Login"
+          }
+        }
+      }
+    },
+    "/users": {
+      "post": {
+        "summary": "Sign-up",
+        "tags": [
+          "Authentication"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user": {
+                  "type": "object",
+                  "properties": {
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    },
+                    "first_name": {
+                      "type": "string"
+                    },
+                    "last_name": {
+                      "type": "string"
+                    },
+                    "date_of_birth": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "required": [
+                "email",
+                "password"
+              ],
+              "descriptions": "Date of Birth should format : 01/01/1990"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful sign-up"
+          },
+          "401": {
+            "description": "Unable to Login"
+          }
+        }
+      },
+      "get": {
+        "summary": "Fetch User information (Login required)",
+        "tags": [
+          "User's order"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return user's informations"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remove user and orders (Login required)",
+        "tags": [
+          "Remove user and orders"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "User and orders has been removed."
+          }
+        }
+      }
+    },
+    "/users/orders": {
+      "post": {
+        "summary": "Create Order with book ids",
+        "tags": [
+          "Create Order"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "body",
+            "name": "book_ids",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "orders": {
+                  "type": "object",
+                  "properties": {
+                    "book_ids": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "eg. Value of book_ids is [4,5]"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful order books."
+          }
+        }
+      }
+    }
+  }
+}
